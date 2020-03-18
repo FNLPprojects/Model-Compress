@@ -120,3 +120,24 @@ test: 测试模型在test数据集上的准确率
 
 distill:使用增强数据集蒸馏模型，根据模型在dev集上的表现保存最优模型
 
+### 应用于自己的数据集
+- 修改Bert/run_classifier.py文件
+- 修改main函数下processors （dict）添加自己的数据集名称（例如sst2）并指定新建数据处理类（例如SST2Processor）
+- 指定训练/验证/测试数据集路径(get_train/dev/test_examples)
+- 根据自己的数据集指定标签（get_labels）例如SST2数据集标签为0和1
+- 读取数据文件转化为unicode（_create_examples）
+- 执行run_classifier.py文件，获取在自己数据集上微调的Bert模型
+- 执行generate_dataset.py文件，获取Bert模型输出的增强数据集
+- 将生成的增强数据集（默认文件名augmented.tsv）放置在distilLSTM/data/xxx下（xxx为自己的数据集名称），并拷贝自己的数据集（包含train/dev/test）到该目录下
+- 修改distilLSTM/prepro.py文件
+- 修改create_sst2_ids_distil函数，设置为自己的数据集格式（sst2数据格式为[text][\t][label]并且有title）
+- 修改distilLSTM/solver.py文件
+- 修改load_data函数，设置为自己的数据集格式（sst2数据格式为[text][\t][label]并且有title）
+- 执行main.py文件，默认为蒸馏，有三种模式可选：train/test/distill
+
+### 实验结果
+| 模型              | 测试次数 | 推理耗时 | 准确率 | 参数数量 | 推理时间 |
+| ----------------- | -------- | -------- | ------ | -------- | -------- |
+| Bert-base-uncased | 10       | 4601s    | 93.1   | 110M     | 1x       |
+| Bi-LSTM无蒸馏     | 10       | 16.8s    | 84.77  | 5.86M    | 273x     |
+| Bi-LSTM蒸馏       | 10       | 16.8s    | 87.32  | 5.86M    | 273x     |
