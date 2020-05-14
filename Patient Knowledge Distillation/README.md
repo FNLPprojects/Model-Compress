@@ -9,7 +9,7 @@ transformers
 ### Compress a BERT
 1. 将对应的数据集名称放入data文件夹 如data/SST-2
 2. 将预训练的bert模型(bert-base-uncased)文件夹放在主目录下
-3. 指定数据路径和任务名 执行以下命令进行教师模型的微调。举例如下
+3. 指定任务名后 执行以下命令进行教师模型的微调
 
 ```bash
 export TASK_NAME=SST-2
