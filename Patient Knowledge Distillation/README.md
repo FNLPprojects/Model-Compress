@@ -12,7 +12,6 @@ transformers
 3. 指定数据路径和任务名 执行以下命令进行教师模型的微调。举例如下
 
 ```bash
-# For compression with a replacement scheduler
 export TASK_NAME=SST-2
 
 python main.py \
@@ -29,7 +28,6 @@ python main.py \
 4. 执行以下命令进行学生模型的训练
 
 ```bash
-# For compression with a constant replacing rate
 python main.py \
   --task_name $TASK_NAME \
   --data_dir data/$TASK_NAME \
