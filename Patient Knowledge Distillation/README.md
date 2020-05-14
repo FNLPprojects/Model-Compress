@@ -45,33 +45,33 @@ python main.py \
 ```
 
 ### 主要函数说明
-1. src/data_processor.py
+1. src/data_processor.py \
 get_task_dataloader 读取数据集（学生模型的训练时会加载所需要的知识）
 
-2. src/KD_loss.py
-distillation_loss 包含交叉熵和KL散度的损失函数
-patience_loss 衡量[CLS]差距的MSE损失函数
+2. src/KD_loss.py \
+distillation_loss 包含交叉熵和KL散度的损失函数 \
+patience_loss 衡量[CLS]差距的MSE损失函数 
 
-3. src/model.py
-BertForSequenceClassificationEncoder  Bert模型的编码层
+3. src/model.py \
+BertForSequenceClassificationEncoder  Bert模型的编码层 \
 FCClassifierForSequenceClassification Bert模型的分类层
 
-4. src/utils.py
-compute_metrics 评测准确率
-count_parameters 计算模型参数量
-load_model 加载模型  model的含义 exact:完全加载 student:加载编码部分 教师12层 学生6层 classifier:加载分类层
+4. src/utils.py \
+compute_metrics 评测准确率 \
+count_parameters 计算模型参数量 \
+load_model 加载模型  model的含义 exact:完全加载 student:加载编码部分 教师12层 学生6层 classifier:加载分类层 \
 eval_model_dataloader 记录教师模型的信息 包括损失、准确率、logit输出和对应的[CLS]层信息
 
-5. main.py
-train 训练模型
+5. main.py \
+train 训练模型 \
 evaluate 评测模型
 
 ### 参数选项
---task_name 任务名称
---data_dir 数据集文件夹
---output_dir 输出文件夹
---bert_model 使用的bert模型
---encoder_checkpoint 编码层的保存文件（学生模型用）
+--task_name 任务名称 \
+--data_dir 数据集文件夹 \
+--output_dir 输出文件夹 \
+--bert_model 使用的bert模型 \
+--encoder_checkpoint 编码层的保存文件（学生模型用） \
 --cls_checkpoint 分类层的保存文件（学生模型用）
 --alpha 交叉熵和KL散度的权重
 --T 蒸馏温度
