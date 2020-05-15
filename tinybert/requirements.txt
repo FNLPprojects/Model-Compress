@@ -1,0 +1,19 @@
+# BERT-of-Theseus is built on Transformers
+torch==1.4.0
+transformers==2.9.0
+scipy
+numpy
+scikit-learn
+seqeval
+filelock
+tqdm
+boto3
+requests
+regex
+sentencepiece
+sacremoses
+sklearn
+tokenizers
+tensorboardX
+tensorboard
+matplotlib
